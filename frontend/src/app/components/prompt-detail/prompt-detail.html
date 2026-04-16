@@ -1,0 +1,12 @@
+<div *ngIf="loading">Loading prompt details...</div>
+<div *ngIf="error">{{ error }}</div>
+
+<div *ngIf="prompt && !loading">
+  <h2>{{ prompt.title }}</h2>
+  <p><strong>Complexity:</strong> {{ prompt.complexity }}</p>
+  <p><strong>Created At:</strong> {{ prompt.created_at }}</p>
+  <p><strong>View Count:</strong> {{ prompt.view_count }}</p>
+
+  <h3>Content</h3>
+  <p>{{ prompt.content }}</p>
+</div>

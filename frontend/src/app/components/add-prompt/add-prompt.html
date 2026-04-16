@@ -1,0 +1,39 @@
+<form [formGroup]="promptForm" (ngSubmit)="submit()" class="form-card">
+  <div>
+    <label>Title</label>
+    <input type="text" formControlName="title" />
+    <div class="error" *ngIf="title?.touched && title?.errors?.['required']">
+      Title is required.
+    </div>
+    <div class="error" *ngIf="title?.touched && title?.errors?.['minlength']">
+      Title must be at least 3 characters.
+    </div>
+  </div>
+
+  <div>
+    <label>Content</label>
+    <textarea rows="6" formControlName="content"></textarea>
+    <div class="error" *ngIf="content?.touched && content?.errors?.['required']">
+      Content is required.
+    </div>
+    <div class="error" *ngIf="content?.touched && content?.errors?.['minlength']">
+      Content must be at least 20 characters.
+    </div>
+  </div>
+
+  <div>
+    <label>Complexity</label>
+    <input type="number" formControlName="complexity" />
+    <div class="error" *ngIf="complexity?.touched && complexity?.errors?.['required']">
+      Complexity is required.
+    </div>
+    <div class="error" *ngIf="complexity?.touched && (complexity?.errors?.['min'] || complexity?.errors?.['max'])">
+      Complexity must be between 1 and 10.
+    </div>
+  </div>
+
+  <button type="submit">Create Prompt</button>
+
+  <p class="success" *ngIf="successMessage">{{ successMessage }}</p>
+  <p class="error" *ngIf="serverError">{{ serverError }}</p>
+</form>

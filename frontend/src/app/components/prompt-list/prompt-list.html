@@ -1,0 +1,19 @@
+<p>Prompt list component loaded</p>
+
+<div *ngIf="loading">Loading prompts...</div>
+<div *ngIf="error">{{ error }}</div>
+
+<div *ngIf="!loading && prompts.length === 0">
+  No prompts found.
+</div>
+
+<div class="prompt-card" *ngFor="let prompt of prompts">
+  <h3>{{ prompt.title }}</h3>
+  <p>
+    Complexity:
+    <span class="badge" [ngClass]="getComplexityClass(prompt.complexity)">
+      {{ prompt.complexity }}
+    </span>
+  </p>
+  <a [routerLink]="['/prompts', prompt.id]">View Details</a>
+</div>
